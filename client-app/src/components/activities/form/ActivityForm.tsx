@@ -5,6 +5,7 @@ import uuid from 'uuid/v4';
 
 interface IProps {
   activity: IActivity;
+  submiting: boolean;
   setEditMode: (editMode: boolean) => void;
   createActivity: (activity: IActivity) => void;
   editActivity: (activity: IActivity) => void;
@@ -15,6 +16,7 @@ const ActivityForm: React.FC<IProps> = ({
   setEditMode,
   createActivity,
   editActivity,
+  submiting,
 }) => {
   const initializeForm = () => {
     if (initialFormState) return initialFormState;
@@ -73,7 +75,7 @@ const ActivityForm: React.FC<IProps> = ({
         />
         <Form.Input name="city" onChange={handleInputChange} placeholder="City" value={activity.city} />
         <Form.Input name="venue" onChange={handleInputChange} placeholder="Venue" value={activity.venue} />
-        <Button floated="right" positive type="submit" content="Submit" />
+        <Button loading={submiting} floated="right" positive type="submit" content="Submit" />
         <Button onClick={() => setEditMode(false)} floated="right" type="button" content="Cancel" />
       </Form>
     </Segment>
